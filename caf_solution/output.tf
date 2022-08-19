@@ -10,6 +10,12 @@ output "objects" {
   sensitive = true
 }
 
+# We use the full list of remote objects to allow dynamic secrets
+output "remote_objects" {
+  value = local.remote
+  sensitive = true
+}
+
 output "global_settings" {
   value     = local.global_settings
   sensitive = false

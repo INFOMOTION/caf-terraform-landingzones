@@ -1,7 +1,8 @@
 module "dynamic_keyvault_secrets" {
-  #source = "../aztfmod/modules/security/dynamic_keyvault_secrets"
+  source = "../aztfmod/modules/security/dynamic_keyvault_secrets"
+  #source = "../../terraform-azurerm-caf/modules/security/dynamic_keyvault_secrets"
 
-  source = "git::https://github.com/INFOMOTION/terraform-azurerm-caf.git//modules/security/dynamic_keyvault_secrets?ref=5.6.0-patch"
+  #source = "git::https://github.com/INFOMOTION/terraform-azurerm-caf.git//modules/security/dynamic_keyvault_secrets?ref=5.6.0-patch"
 
   for_each = {
     for keyvault_key, secrets in try(var.dynamic_keyvault_secrets, {}) : keyvault_key => {
@@ -13,4 +14,5 @@ module "dynamic_keyvault_secrets" {
   settings = each.value
   keyvault = module.solution.keyvaults[each.key]
   objects  = module.solution
+  remote_objects  = local.remote
 }
