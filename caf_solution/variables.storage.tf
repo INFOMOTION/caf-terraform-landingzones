@@ -17,3 +17,6 @@ variable "storage_account_queues" {
 variable "storage_containers" {
   default = {}
 }
+variable "data_lake_filesystems" {
+  default = {}
+}
