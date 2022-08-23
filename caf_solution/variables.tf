@@ -225,6 +225,9 @@ variable "dynamic_keyvault_secrets" {
   default = {}
 }
 
+variable "remote_dynamic_keyvault_secrets" {
+  default = {}
+}
 
 variable "diagnostic_storage_accounts" {
   default = {}
