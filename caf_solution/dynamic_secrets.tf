@@ -1,6 +1,6 @@
 module "dynamic_keyvault_secrets" {
-  #source = "../aztfmod/modules/security/dynamic_keyvault_secrets"
-  source = "../../terraform-azurerm-caf/modules/security/dynamic_keyvault_secrets"
+  source = "../aztfmod/modules/security/dynamic_keyvault_secrets"
+  #source = "../../terraform-azurerm-caf/modules/security/dynamic_keyvault_secrets"
 
   #source = "git::https://github.com/INFOMOTION/terraform-azurerm-caf.git//modules/security/dynamic_keyvault_secrets?ref=5.6.0-patch"
 
@@ -54,8 +54,8 @@ remote_dynamic_keyvault_secrets = {
  */
 
 module "remote_dynamic_keyvault_secrets" {
-  #source = "../aztfmod/modules/security/dynamic_keyvault_secrets"
-  source = "../../terraform-azurerm-caf/modules/security/dynamic_keyvault_secrets"
+  source = "../aztfmod/modules/security/dynamic_keyvault_secrets"
+  #source = "../../terraform-azurerm-caf/modules/security/dynamic_keyvault_secrets"
 
   #source = "git::https://github.com/INFOMOTION/terraform-azurerm-caf.git//modules/security/dynamic_keyvault_secrets?ref=5.6.0-patch"
 
