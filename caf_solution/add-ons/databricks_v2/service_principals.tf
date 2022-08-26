@@ -17,6 +17,7 @@ data "azurerm_key_vault_secret" "application_id" {
   }
   name         = each.value.keyvault.secret_name
   key_vault_id = local.remote.keyvaults[each.value.keyvault.lz_key][each.value.keyvault.key].id
+  force = true
 }
 
 # Option 3: Reference to Resource Key from Landing Zone
