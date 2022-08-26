@@ -8,6 +8,7 @@ resource "databricks_service_principal" "sp" {
 
   display_name = try(each.value.name, each.key)
   application_id = try(data.azurerm_key_vault_secret.application_id[each.key].value, each.value.application_id)
+  force = try(each.value.force, false)
 }
 
 data "azurerm_key_vault_secret" "application_id" {
@@ -17,7 +18,6 @@ data "azurerm_key_vault_secret" "application_id" {
   }
   name         = each.value.keyvault.secret_name
   key_vault_id = local.remote.keyvaults[each.value.keyvault.lz_key][each.value.keyvault.key].id
-  force = try(each.value.force, false)
 }
 
 # Option 3: Reference to Resource Key from Landing Zone
@@ -31,4 +31,5 @@ resource "databricks_service_principal" "msi" {
   # Name is Name of the Resource - defaults to Name Variable or Config-Keyname 
   display_name = try(local.remote.data_factory[each.value.lz_key][each.value.key].name, each.value.name, each.key)
   application_id = local.remote.data_factory[each.value.lz_key][each.value.key].identity[0].principal_id
+  force = try(each.value.force, false)
 }
