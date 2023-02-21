@@ -74,6 +74,9 @@ locals {
     data_factory = {
       for key, value in try(var.landingzone.tfstates, {}) : key => merge(try(data.terraform_remote_state.remote[key].outputs.objects[key].data_factory, {}))
     }
+    data_lake_filesystems = {
+      for key, value in try(var.landingzone.tfstates, {}) : key => merge(try(data.terraform_remote_state.remote[key].outputs.objects[key].data_lake_filesystems, {}))
+    }
     databricks_workspaces = {
       for key, value in try(var.landingzone.tfstates, {}) : key => merge(try(data.terraform_remote_state.remote[key].outputs.objects[key].databricks_workspaces, {}))
     }
