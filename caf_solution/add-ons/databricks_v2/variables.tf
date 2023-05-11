@@ -40,3 +40,7 @@ variable "databricks_service_principals" {
   description = "This resource allows you to create user groups."
   default     = {}
 }
+variable "databricks_secret_scopes" {
+  description = "Used for creating Secret Scopes linked to Azure Key Vaults"
+  default = {}
+}
