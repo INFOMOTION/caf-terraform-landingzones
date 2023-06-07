@@ -29,6 +29,7 @@ resource "databricks_cluster" "clusters" {
   spark_conf                   = try(each.value.spark_conf, null)
   spark_env_vars               = try(each.value.spark_env_vars, null)
   ssh_public_keys              = try(each.value.ssh_public_keys, null)
+  data_security_mode           = try(each.value.data_security_mode, null)
 
   dynamic "autoscale" {
     for_each = try(each.value.autoscale, null) == null ? [] : [1]
