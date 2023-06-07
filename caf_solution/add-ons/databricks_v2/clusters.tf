@@ -65,8 +65,8 @@ data "databricks_node_type" "driver_node_type" {
     if can(value.driver_node_type)
   }
 
-  category                = try(each.value.driver_node_type.min_memory_gb, "General Purpose (HDD)")
-  gb_per_core             = try(each.value.driver_node_type.min_memory_gb, 0)
+  category                = try(each.value.driver_node_type.category, "General Purpose")
+  gb_per_core             = try(each.value.driver_node_type.gp_per_core, 0)
   is_io_cache_enabled     = try(each.value.driver_node_type.is_io_cache_enabled, false)
   local_disk              = try(each.value.driver_node_type.local_disk, false)
   min_cores               = try(each.value.driver_node_type.min_cores, 0)
@@ -84,8 +84,8 @@ data "databricks_node_type" "node_type" {
     if can(value.node_type)
   }
 
-  category                = try(each.value.node_type.min_memory_gb, "General Purpose (HDD)")
-  gb_per_core             = try(each.value.node_type.min_memory_gb, 0)
+  category                = try(each.value.node_type.category, "General Purpose")
+  gb_per_core             = try(each.value.node_type.gp_per_core, 0)
   is_io_cache_enabled     = try(each.value.node_type.is_io_cache_enabled, false)
   local_disk              = try(each.value.node_type.local_disk, false)
   min_cores               = try(each.value.node_type.min_cores, 0)
