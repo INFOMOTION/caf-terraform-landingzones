@@ -12,7 +12,7 @@ resource "databricks_cluster" "clusters" {
   #
 
   # Required - optional if instance_pool_id is given
-  node_type_id = can(each.value.instance_pool) ? null : data.databricks_node_type.node_type[each.key].id
+  node_type_id = can(each.value.instance_pool) ? null : try(each.value.node_type_id, data.databricks_node_type.node_type[each.key].id)
 
   #
   # Optional
@@ -21,7 +21,7 @@ resource "databricks_cluster" "clusters" {
   autotermination_minutes      = try(each.value.autotermination_minutes, null)
   cluster_name                 = try(each.value.name, null)
   custom_tags                  = try(each.value.custom_tags, null)
-  driver_node_type_id          = can(each.value.driver_node_type) ? data.databricks_node_type.driver_node_type[each.key].id : data.databricks_node_type.node_type[each.key].id
+  driver_node_type_id          = can(each.value.driver_node_type) ? data.databricks_node_type.driver_node_type[each.key].id : try(each.value.driver_node_type_id, each.value.node_type_id, data.databricks_node_type.node_type[each.key].id)
   enable_local_disk_encryption = try(each.value.enable_local_disk_encryption, null)
   idempotency_token            = try(each.value.idempotency_token, null)
   is_pinned                    = try(each.value.is_pinned, false)
